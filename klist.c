@@ -212,6 +212,10 @@ void k_list_remove_all_items(KLIST *list){
 
 KLIST_ERR 
 k_list_insert_item_at_index(KLIST *list, void *item, int index){
+	if (index <0) {
+		k_list_append(list, item);
+		return KLIST_ERR_NONE;
+	}
 	if (index == 0) {
 		k_list_prepend(list, item);
 		return KLIST_ERR_NONE;
