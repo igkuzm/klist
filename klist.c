@@ -200,11 +200,14 @@ k_list_remove_item(KLIST *list, void *item){
 
 void k_list_remove_all_items(KLIST *list){
 	KLIST *ptr = k_list_last(list);
-	while (ptr != NULL) {
+	while (ptr->prev != NULL) {
 		KLIST *prev = ptr->prev;
 		free(ptr);
 		ptr = prev;
 	}
+	ptr->prev = NULL;
+	ptr->next = NULL;
+	ptr->data = NULL;
 }
 
 KLIST_ERR 
