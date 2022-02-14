@@ -54,6 +54,8 @@ KLIST_ERR k_list_remove_item_at_index(KLIST *list, int index);
 
 KLIST_ERR k_list_remove_item(KLIST *list, void *item);
 
+void k_list_remove_all_items(KLIST *list);
+
 KLIST_ERR k_list_insert_item_at_index(KLIST *list, void *item, int index);
 
 KLIST_ERR k_list_move_item(KLIST *list, int from_index, int to_index);

@@ -198,6 +198,15 @@ k_list_remove_item(KLIST *list, void *item){
 	return KLIST_ERR_NO_VALUE_IN_LIST;
 }
 
+void k_list_remove_all_items(KLIST *list){
+	KLIST *ptr = k_list_last(list);
+	while (ptr != NULL) {
+		KLIST *prev = ptr->prev;
+		free(ptr);
+		ptr = prev;
+	}
+}
+
 KLIST_ERR 
 k_list_insert_item_at_index(KLIST *list, void *item, int index){
 	if (index == 0) {
