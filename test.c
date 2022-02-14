@@ -7,7 +7,6 @@
  */
 
 #include "klist.h"
-#include <malloc/_malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 
