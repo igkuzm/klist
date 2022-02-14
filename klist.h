@@ -57,4 +57,5 @@ KLIST_ERR k_list_move_item(KLIST *list, int from_index, int to_index);
 
 int k_list_index_of_item(KLIST *list, void *item);
 
-void k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *item, void *user_data));
+//return the callback return
+int k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *item, void *user_data));

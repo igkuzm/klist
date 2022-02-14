@@ -237,16 +237,17 @@ void k_list_free(KLIST *list){
 	}
 }
 
-void k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *item, void *user_data)){
+int k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *item, void *user_data)){
 	KLIST *ptr = list;
 	while (ptr != NULL) {
 		int c = callback(ptr->data, user_data);
 		if (c != 0) {
 			//stop callback if return not 0
-			return;
+			return c;
 		}
 		ptr = ptr->next;
 	}
+	return 0;
 }
 
 void k_list_append_items(KLIST *list, ...){
