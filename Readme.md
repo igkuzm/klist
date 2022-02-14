@@ -3,7 +3,8 @@
 List array (std::vector like) container written in pure C.
 Simpe example:
 
-``#include "klist.h"
+```
+#include "klist.h"
 
 int callback(void *item, void *user_data) {
 	printf("%s ", (char *)item);
@@ -23,5 +24,6 @@ int main(int argc, char *argv[])
 
 	
 return 0;
-}``
+}
+```
 
