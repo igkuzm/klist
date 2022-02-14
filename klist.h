@@ -14,7 +14,8 @@ typedef enum k_list_err {
 	KLIST_ERR_NONE = 0,
 	KLIST_ERR_NO_ITEM_AT_INDEX,
 	KLIST_ERR_INDEX_OUT_OF_RANGE,
-	KLIST_ERR_LIST_IS_EMPTY
+	KLIST_ERR_LIST_IS_EMPTY,
+	KLIST_ERR_NO_VALUE_IN_LIST
 } KLIST_ERR;
 
 
@@ -50,6 +51,8 @@ void *k_list_last_item(KLIST *list);
 int k_list_size(KLIST *list);
 
 KLIST_ERR k_list_remove_item_at_index(KLIST *list, int index);
+
+KLIST_ERR k_list_remove_item(KLIST *list, void *item);
 
 KLIST_ERR k_list_insert_item_at_index(KLIST *list, void *item, int index);
 

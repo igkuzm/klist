@@ -18,9 +18,10 @@ char *k_list_err_str(KLIST_ERR err){
 	}
 	switch (err) {
 		case KLIST_ERR_NONE: sprintf(str, "KLIST: No error"); break;
-		case KLIST_ERR_NO_ITEM_AT_INDEX: sprintf(str, "KLIST: No item at selected index"); break;
+		case KLIST_ERR_NO_ITEM_AT_INDEX: sprintf(str, "KLIST: No item at requested index"); break;
 		case KLIST_ERR_INDEX_OUT_OF_RANGE: sprintf(str, "KLIST: Index is out of range"); break;
 		case KLIST_ERR_LIST_IS_EMPTY: sprintf(str, "KLIST: List is empty"); break;
+		case KLIST_ERR_NO_VALUE_IN_LIST: sprintf(str, "KLIST: List has no requested value"); break;
 	}
 	
 	return str;	
@@ -167,6 +168,34 @@ k_list_remove_item_at_index(KLIST *list, int index){
 	}
 
 	return KLIST_ERR_NO_ITEM_AT_INDEX;
+}
+
+KLIST_ERR 
+k_list_remove_item(KLIST *list, void *item){
+	if (k_list_is_empty(list)) {
+		return KLIST_ERR_LIST_IS_EMPTY;	
+	}
+	KLIST *ptr = list; int i = 0;
+	while (ptr != NULL) {
+		if (ptr->data == item) {
+			if (i == 0) {
+				k_list_remove_item_at_index(list, 0);
+				return KLIST_ERR_NONE;
+			}
+			KLIST *prev = ptr->prev;	
+			KLIST *next = ptr->next;
+			free(ptr);
+			prev->next = next;
+			if (next != NULL) {
+				next->prev = prev;
+			}
+			return KLIST_ERR_NONE;
+		}	
+		ptr=ptr->next;
+		i++;
+	}
+
+	return KLIST_ERR_NO_VALUE_IN_LIST;
 }
 
 KLIST_ERR 
