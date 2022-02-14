@@ -2,7 +2,7 @@
  * File              : klist.h
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 13.02.2022
+ * Last Modified Date: 14.02.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
@@ -35,6 +35,9 @@ void k_list_copy_list(KLIST *list, KLIST **_new_list);
 bool k_list_is_empty(KLIST *list);
 
 void k_list_append(KLIST *list, void *item);
+
+//append NULL-terminated list of items (item0, item1, NULL)
+void k_list_append_items(KLIST *list, ...);
 
 void k_list_prepend(KLIST *list, void *item);
 

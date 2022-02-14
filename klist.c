@@ -2,11 +2,12 @@
  * File              : klist.c
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 13.02.2022
+ * Last Modified Date: 14.02.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
 #include "klist.h"
+#include <stdarg.h>
 #include <stdio.h>
 
 char *k_list_err_str(KLIST_ERR err){
@@ -247,3 +248,15 @@ void k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *ite
 		ptr = ptr->next;
 	}
 }
+
+void k_list_append_items(KLIST *list, ...){
+	va_list valist;
+	va_start(valist, list);
+	void *item = va_arg(valist, void *);
+	while (item != NULL) {
+		k_list_append(list, item);
+		item = va_arg(valist, void *);
+	}
+	va_end(valist);
+}
+

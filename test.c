@@ -2,11 +2,12 @@
  * File              : test.c
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 13.02.2022
+ * Last Modified Date: 14.02.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
 #include "klist.h"
+#include <malloc/_malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -78,6 +79,7 @@ void print_list(KLIST *list){
 void print_navigation(){
 	printf("#######################################\n");
 	printf("a - append item\n");
+	printf("l - append thee items\n");
 	printf("p - prepend item\n");
 	printf("r - remove item at index\n");
 	printf("i - insert item at index\n");
@@ -109,6 +111,19 @@ Start:;
 					goto Start;
 					break;
 				}	
+			case 'l':
+				{
+					printf("Enter string to append\n");
+					getchar();
+					char *str0 = readString();
+					printf("Enter string to append\n");
+					char *str1 = readString();					
+					printf("Enter string to append\n");
+					char *str2 = readString();					
+					k_list_append_items(list, str0, str1, str2, NULL);
+					goto Start;
+					break;
+				}				
 			case 'p':	
 				{
 					printf("Enter string to prepend\n");
