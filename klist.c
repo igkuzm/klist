@@ -270,12 +270,8 @@ int k_list_index_of_item(KLIST *list, void *item){
 }
 
 void k_list_free(KLIST *list){
-	KLIST *ptr = list;	
-	while (ptr != NULL) {
-		KLIST *_list = ptr;
-		ptr=ptr->next;
-		free(_list);
-	}
+	k_list_remove_all_items(list);
+	free(list);
 }
 
 int k_list_foreach_item(KLIST *list, void *user_data, int (*callback)(void *item, void *user_data)){
