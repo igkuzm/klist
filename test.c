@@ -2,7 +2,7 @@
  * File              : test.c
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 14.02.2022
+ * Last Modified Date: 19.02.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
@@ -57,7 +57,7 @@ int print_list_callback(void *item, void *user_data) {
 	return 0;
 }
 
-void print_list(KLIST *list){
+void print_list(KList *list){
 	//int *i = malloc(sizeof(int));
 	//if (i==NULL) {
 		//perror("i malloc");
@@ -89,7 +89,7 @@ void print_navigation(){
 	printf("q - quit\n");
 }
 
-void start_test(KLIST *list){
+void start_test(KList *list){
 Start:;
 	print_header();
 	print_list(list);
@@ -208,7 +208,7 @@ Start:;
 int main(int argc, char *argv[])
 {
 	printf("Starting klist test...\n");
-	KLIST *list = k_list_new();
+	KList *list = k_list_new();
 	start_test(list);
 	return 0;
 }
