@@ -2,7 +2,7 @@
  * File              : klist.c
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 19.02.2022
+ * Last Modified Date: 23.02.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
@@ -148,6 +148,7 @@ k_list_remove_item_at_index(KList *list, int index){
 		}
 		next->prev = NULL;
 		free(list);
+		list=NULL;
 		*list=*next;
 		return KLIST_ERR_NONE;
 	}
@@ -158,6 +159,7 @@ k_list_remove_item_at_index(KList *list, int index){
 			KList *prev = ptr->prev;	
 			KList *next = ptr->next;
 			free(ptr);
+			ptr=NULL;
 			prev->next = next;
 			if (next != NULL) {
 				next->prev = prev;
@@ -185,6 +187,7 @@ k_list_remove_item(KList *list, void *item){
 			KList *prev = ptr->prev;	
 			KList *next = ptr->next;
 			free(ptr);
+			ptr=NULL;
 			prev->next = next;
 			if (next != NULL) {
 				next->prev = prev;
@@ -203,6 +206,7 @@ void k_list_remove_all_items(KList *list){
 	while (ptr->prev != NULL) {
 		KList *prev = ptr->prev;
 		free(ptr);
+		ptr=NULL;
 		ptr = prev;
 	}
 	ptr->prev = NULL;
@@ -276,6 +280,7 @@ int k_list_index_of_item(KList *list, void *item){
 void k_list_free(KList *list){
 	k_list_remove_all_items(list);
 	free(list);
+	list=NULL;
 }
 
 int k_list_foreach_item(KList *list, void *user_data, int (*callback)(void *item, void *user_data)){

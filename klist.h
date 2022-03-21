@@ -2,7 +2,7 @@
  * File              : klist.h
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 19.02.2022
+ * Last Modified Date: 21.03.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
@@ -24,6 +24,9 @@ typedef struct k_list_t {
 	struct k_list_t *prev;
 	struct k_list_t *next;
 } KList;
+
+#define FOR_EACH(item, list) \
+    for (KList *(item) = (list); (item); (item) = (item)->next)
 
 //return error description
 char *k_list_err_str(KList_Err err);
