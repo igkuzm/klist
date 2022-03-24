@@ -2,7 +2,7 @@
  * File              : klist.c
  * Author            : Igor V. Sementsov <ig.kuzm@gmail.com>
  * Date              : 13.02.2022
- * Last Modified Date: 23.02.2022
+ * Last Modified Date: 24.03.2022
  * Last Modified By  : Igor V. Sementsov <ig.kuzm@gmail.com>
  */
 
@@ -69,36 +69,36 @@ KList *k_list_last(KList *list) {
 
 void k_list_copy_list(KList *list, KList **_new_list) {
 	KList *new_list = k_list_new();
-	new_list->data = list->data;
-	new_list->prev = list->prev;
-	new_list->next = list->next;
-	*_new_list = new_list;
+	new_list->data  = list->data;
+	new_list->prev  = list->prev;
+	new_list->next  = list->next;
+	*_new_list      = new_list;
 }
 
 void k_list_append(KList *list, void *item){
 	if (k_list_is_empty(list)) { //if list is empty
-		list->data = item; //set data to list
+		list->data  = item; //set data to list
 		return;
 	}
-	KList *last = k_list_last(list);
+	KList *last     = k_list_last(list);
 	KList *new_list = k_list_allocate(); //create new_list
-	new_list->data = item; //set up data
-	last->next = new_list; //new_list is next to last
-	new_list->prev = last; 
+	new_list->data  = item; //set up data
+	last->next      = new_list; //new_list is next to last
+	new_list->prev  = last;
 }
 
 void k_list_prepend(KList *list, void *item){
 	if (k_list_is_empty(list)) {
-		list->data = item;
+		list->data  = item;
 		return;
 	}
 	KList *ptr;
 	k_list_copy_list(list, &ptr);
 	KList *new_list = k_list_allocate(); //create new_list
-	new_list->data = item;
-	ptr->prev = new_list; //new_list is previous to first
-	new_list->next = ptr;
-	*list = *new_list;
+	new_list->data  = item;
+	ptr->prev       = new_list; //new_list is previous to first
+	new_list->next  = ptr;
+	*list           = *new_list;
 }
 
 void *k_list_item_at(KList *list, int index){
